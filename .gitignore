@@ -1,0 +1,5 @@
+/node_modules
+*.p8
+/package-lock.json
+/serverKey.json
+/.DS_Store

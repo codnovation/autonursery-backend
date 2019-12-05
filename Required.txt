@@ -1,0 +1,106 @@
+User:
+
+actions:
+
+  Teacher:
+
+    1. CRUD requests per child by ID or class by name or whole school.
+    2. CRD Albums per child by ID or class by name or whole school. //TODO: Not now
+    3. CRUD activities per child by ID or class by name or whole school.
+    4. CRUD children by user ID or class.
+    5. CRUD class.
+    6. CRUD events.
+    7. CRUD Food item by FoodMenu ID.
+    8. Send messages to user.
+    9. CRD Photo to album.
+    10. CRUD user.
+
+   Parent:
+
+   1. View requests per child by ID.
+   2. View Albums per child by ID.
+   3. Select Children. (Filtering)
+   4. View Event by Date.
+   5. View Daily FoodMenu.
+   6. View Messages.
+   7. View Requests by Status.
+   8. View Daily Feeds.
+   9. View Daily Report.
+
+
+Done:
+
+  1. Add request to user.
+  2. Add request to class.
+  3. Add Request to school.
+  4. Get User requests.
+  5. Get Class Requests.
+  6. Get School Requests.
+  7. Add Activity to user
+  8. Add Activity to class.
+  9. Add Activity to school.
+  10. Get User Activities.
+  11. Get Class Activities.
+  12. Get School Activities.
+  13. Add User Child.
+  14. Get User Children.
+  15. Add Child to Class.
+  16. Get Children in Class.
+  17. Get Children in School.
+  18. Get All Classes.
+  17. Update Class.
+  18. Delete Class by name.
+  19. Get Class by Id.
+  20. Get Class by Name.
+  21. Delete Class by ID.
+  22. Add Event.
+  23. Delete Event by Name.
+  24. Delete Event by ID.
+  25. Update Event.
+  26. Get Event by ID.
+  27. Get One Food Menu.
+  28. Get Food in Food Menu.
+  29. Add Food to Food Menu.
+  30. Delete Food Menu by ID.
+  31. Get User Messages.
+  32. Send Message //Needs checkup.
+  33. Get User by Id.
+  34. Get User by Name.
+  35. Get User by Email.
+  36. Get User by Phone Number.
+  37. Delete User.
+  38. Update Request.
+  39. Delete Request by id.
+  40. Delete Request by Title.
+  41. Add Activity.
+  42. Get Activities.
+  43. Get One Activity.
+  44. Delete Activity by Id.
+  45. Delete Activity by Name.
+  46. Add child.
+  47. Get children.
+  48. Get One child.
+  49. Delete child by Id.
+  50. Add Food,
+  51. Delete Food by Name.
+  52. Update Food.
+  53. Add class.
+  54. Update Food.
+  55. Update Activity.
+  56. Update Album.
+  57. Update Class.
+  58. Update Event.
+  59. Update Food Menu.
+  60. Update Message.
+  61. Update Photo.
+  62. Update Request.
+  63. Update User.
+
+
+  Doneeeeeee minor modifications :DDDDD
+
+Pending:
+
+
+  17. Check Population of all requests!!!!!!!
+  20. Get Parents of child.
