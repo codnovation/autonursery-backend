@@ -7,7 +7,7 @@ const User = new mongoose.Schema({
         type: String,
         lowercase: true,
         required: true,
-        index: { unique: true }
+        index: {unique: true}
     },
     dateOfBirth: Date,
     phoneNumber: Number,
@@ -19,13 +19,13 @@ const User = new mongoose.Schema({
         enum: ['Teacher', 'Parent', 'Admin'],
         default: 'Parent'
     },
-    children: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Child' }],
-    requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Request' }],
-    messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }],
+    children: [{type: mongoose.Schema.Types.ObjectId, ref: 'Child'}],
+    requests: [{type: mongoose.Schema.Types.ObjectId, ref: 'Request'}],
+    messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Message'}],
     security: [{
-      class: { type: mongoose.Schema.Types.ObjectId, ref: 'Class' },
-      section_name: String,
-      // index: Number
+        class: {type: mongoose.Schema.Types.ObjectId, ref: 'Class'},
+        section_name: String,
+        // index: Number
     }],
     gender: String,
 });
@@ -53,10 +53,14 @@ User.pre('save', function saveHook(next) {
 
 
     return bcrypt.genSalt((saltError, salt) => {
-        if (saltError) { return next(saltError); }
+        if (saltError) {
+            return next(saltError);
+        }
 
         return bcrypt.hash(user.password, salt, (hashError, hash) => {
-            if (hashError) { return next(hashError); }
+            if (hashError) {
+                return next(hashError);
+            }
 
             // replace a password string with hash value
             user.password = hash;

@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 
 // define the Messages model schema
 const ActivitySchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  type: String,
-  date: Date
+    name: String,
+    description: String,
+    type: String,
+    date: Date
 });
 
 module.exports = mongoose.model('Activity', ActivitySchema);

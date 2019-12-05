@@ -1,29 +1,29 @@
-import { MessagesHandler } from './handlers/messagesHandler';
-import { FoodHandler } from './handlers/foodHandler';
-import { UserHandler } from './handlers/userHandler';
-import { RequestHandler } from './handlers/requestsHandler';
-import { AlbumHandler } from './handlers/albumHandler';
-import { UploadHandler } from './handlers/upload';
-import { ClassHandler } from './handlers/classHandler';
-import { ChildHandler } from './handlers/childHandler';
-import { FoodMenuHandler } from './handlers/foodMenuHandler';
-import { EventHandler } from './handlers/eventHandler';
-import { ActivityHandler } from './handlers/activityHandler';
-import { PhotosHandler } from './handlers/photosHandler';
-import { AgendaHandler } from './handlers/agendaHandler';
-import { FeedsHandler } from './handlers/feedsHandler';
-import { AttendanceHandler } from './handlers/attendanceHandler';
+import {MessagesHandler} from './handlers/messagesHandler';
+import {FoodHandler} from './handlers/foodHandler';
+import {UserHandler} from './handlers/userHandler';
+import {RequestHandler} from './handlers/requestsHandler';
+import {AlbumHandler} from './handlers/albumHandler';
+import {UploadHandler} from './handlers/upload';
+import {ClassHandler} from './handlers/classHandler';
+import {ChildHandler} from './handlers/childHandler';
+import {FoodMenuHandler} from './handlers/foodMenuHandler';
+import {EventHandler} from './handlers/eventHandler';
+import {ActivityHandler} from './handlers/activityHandler';
+import {PhotosHandler} from './handlers/photosHandler';
+import {AgendaHandler} from './handlers/agendaHandler';
+import {FeedsHandler} from './handlers/feedsHandler';
+import {AttendanceHandler} from './handlers/attendanceHandler';
 
 const express = require('express');
 
 const router = new express.Router();
 
 router.get('/', (req, res) => {
-  res.status(200).json({
-    message: "You're authorized to see this secret message.",
-    // user values passed through from auth middleware
-    user: req.user
-  });
+    res.status(200).json({
+        message: "You're authorized to see this secret message.",
+        // user values passed through from auth middleware
+        user: req.user
+    });
 });
 
 // Activity APIs

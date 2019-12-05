@@ -1,4 +1,5 @@
 import RequestSchema from '../../models/requests';
+
 // import serverKey from '../../serverKey';
 
 /**
@@ -12,63 +13,63 @@ import RequestSchema from '../../models/requests';
 
 export class RequestHandler {
 
-  // get all
-  get(req, res) {
-    RequestSchema.find({}).then(results => {
-      res.json(results);
-    });
-  }
+    // get all
+    get(req, res) {
+        RequestSchema.find({}).then(results => {
+            res.json(results);
+        });
+    }
 
-  // add request
-  add(req, res) {
-    RequestSchema.create({
-      status: req.body.status,
-      priority: req.body.priority,
-      title: req.body.title,
-      description: req.body.description,
-      due: req.body.due,
-    }).then(request => {
-      res.json(request);
-    }).catch(err => {
-      res.send(err);
-    });
-  }
+    // add request
+    add(req, res) {
+        RequestSchema.create({
+            status: req.body.status,
+            priority: req.body.priority,
+            title: req.body.title,
+            description: req.body.description,
+            due: req.body.due,
+        }).then(request => {
+            res.json(request);
+        }).catch(err => {
+            res.send(err);
+        });
+    }
 
-  // update request by id
-  update(req, res) {
-    RequestSchema.findByIdAndUpdate(req.params.id, {
-      status: req.body.status,
-      priority: req.body.priority,
-      title: req.body.title,
-      description: req.body.description,
-      date: req.body.date,
-      rcvr: req.body.rcvr
-    }).then(result => {
-      res.json(result);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-  }
+    // update request by id
+    update(req, res) {
+        RequestSchema.findByIdAndUpdate(req.params.id, {
+            status: req.body.status,
+            priority: req.body.priority,
+            title: req.body.title,
+            description: req.body.description,
+            date: req.body.date,
+            rcvr: req.body.rcvr
+        }).then(result => {
+            res.json(result);
+        })
+            .catch(err => {
+                res.json(err);
+            });
+    }
 
-  // delete by id
-  deleteById(req, res) {
-    RequestSchema.findByIdAndRemove(req.params.id).then(result => {
-      res.json(result);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-  }
+    // delete by id
+    deleteById(req, res) {
+        RequestSchema.findByIdAndRemove(req.params.id).then(result => {
+            res.json(result);
+        })
+            .catch(err => {
+                res.status(400).json(err);
+            });
+    }
 
-  // update(req, res) {
-  //   RequestSchema.findByIdAndUpdate(req.params.id, req.body).then(result => {
-  //     res.json(result);
-  //   })
-  //   .catch(err => {
-  //     res.json(err);
-  //   });
-  // }
+    // update(req, res) {
+    //   RequestSchema.findByIdAndUpdate(req.params.id, req.body).then(result => {
+    //     res.json(result);
+    //   })
+    //   .catch(err => {
+    //     res.json(err);
+    //   });
+    // }
 }
 
 // import FCM from 'fcm-node';
