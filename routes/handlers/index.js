@@ -1,33 +1,19 @@
-import {MessagesHandler} from './messagesHandler';
-import {FoodHandler} from './foodHandler';
-import {UserHandler} from './userHandler';
-import {RequestHandler} from './requestsHandler';
-import {AlbumHandler} from './albumHandler';
-import {UploadHandler} from './upload';
-import {ClassHandler} from './classHandler';
-import {ChildHandler} from './childHandler';
-import {FoodMenuHandler} from './foodMenuHandler';
-import {EventHandler} from './eventHandler';
-import {ActivityHandler} from './activityHandler';
-import {PhotosHandler} from './photosHandler';
-import {AgendaHandler} from './agendaHandler';
-import {FeedsHandler} from './feedsHandler';
-import {AttendanceHandler} from './attendanceHandler';
+import {ClassHandler} from './class';
+import {SectionHandler} from './section';
+import {ChildHandler} from './child';
+import {UserHandler} from './user';
+import {RequestHandler} from './request';
+import {EventHandler} from './event';
+import {AgendaHandler} from './agenda';
+import {MessageHandler} from './message';
 
 module.exports = {
-    MessagesHandler: MessagesHandler,
-    FoodHandler: FoodHandler,
+    ClassHandler: ClassHandler,
+    SectionHandler: SectionHandler,
+    ChildHandler: ChildHandler,
     UserHandler: UserHandler,
     RequestHandler: RequestHandler,
-    AlbumHandler: AlbumHandler,
-    UploadHandler: UploadHandler,
-    ClassHandler: ClassHandler,
-    ChildHandler: ChildHandler,
-    FoodMenuHandler: FoodMenuHandler,
     EventHandler: EventHandler,
-    ActivityHandler: ActivityHandler,
-    PhotosHandler: PhotosHandler,
     AgendaHandler: AgendaHandler,
-    FeedsHandler: FeedsHandler,
-    AttendanceHandler: AttendanceHandler
+    MessageHandler: MessageHandler
 };

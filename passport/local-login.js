@@ -3,7 +3,7 @@
 const jwt = require('jsonwebtoken');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const config = require('../config');
-import User from "../models/user";
+import User from "../old/models/user";
 
 /**
  * Return the Passport Local Strategy object.

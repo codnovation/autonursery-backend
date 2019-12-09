@@ -3,7 +3,6 @@
 import handlers from './handlers';
 
 const express = require('express');
-
 const router = new express.Router();
 
 router.get('/', (req, res) => {
@@ -14,141 +13,73 @@ router.get('/', (req, res) => {
     });
 });
 
-// Activity APIs
-const activityHandler = new handlers.ActivityHandler();
-router.get('/activities', activityHandler.get);
-router.get('/activities/:id', activityHandler.getOne);
-router.post('/activities', activityHandler.add);
-router.delete('/activities/:id', activityHandler.deleteById);
-router.put('/activities/:id', activityHandler.update);
-
-// Agenda APIs
-const agendaHandler = new handlers.AgendaHandler();
-router.get('/agenda', agendaHandler.get);
-router.get('/agenda/:id', agendaHandler.getOne);
-router.post('/agenda', agendaHandler.add);
-router.delete('/agenda/:id', agendaHandler.deleteById);
-router.put('/agenda/:id', agendaHandler.update);
-
-// Attendance API
-const attendanceHandler = new handlers.AttendanceHandler();
-router.get('/agenda/:id/:day', attendanceHandler.getAttendanceByChild);
-
-// Messages APIs
-const messageHandler = new handlers.MessagesHandler();
-router.get('/messages', messageHandler.get);
-router.get('/messages/:id', messageHandler.getOne);
-router.post('/messages', messageHandler.add);
-router.delete('/messages/:id', messageHandler.deleteById);
-router.put('/messages/:id', messageHandler.update);
-
-// Food APIs
-const foodHandler = new handlers.FoodHandler();
-router.get('/food', foodHandler.get);
-router.post('/food', foodHandler.add);
-router.delete('/food/:name', foodHandler.deleteByName);
-router.delete('/food/:id', foodHandler.deleteById);
-router.put('/food/:id', foodHandler.update);
-
-// Request APIs
-const requestHandler = new handlers.RequestHandler();
-router.get('/requests', requestHandler.get);
-router.post('/requests', requestHandler.add);
-router.put('/requests/:id', requestHandler.update);
-router.delete('/requests/:id', requestHandler.deleteById);
-
-// User APIs
-const userHandler = new handlers.UserHandler();
-router.get('/users', userHandler.get);
-router.get('/user/:id', userHandler.getOne);
-router.get('/user/:id/messages', userHandler.getUserMessages);
-router.get('/user/:id/requests', userHandler.getUserRequests);
-router.get('/user/:id/children', userHandler.getUserChildren);
-router.post('/users', userHandler.add);
-router.post('/user/:id/messages', userHandler.addMessage);
-router.post('/user/:id/children', userHandler.addUserChild);
-router.delete('/user/:id', userHandler.deleteById);
-router.post('/user/:id/requests', userHandler.addRequest);
-router.post('/user/:id', userHandler.addMessage);
-router.put('/user/:id', userHandler.update);
-router.post('/user/:id/resetpassword', userHandler.resetPassword);
-
-// File Upload API
-const uploadHandler = new handlers.UploadHandler();
-router.post('/upload/:id', uploadHandler.upload);
-
-// Feed API
-const feedsHandler = new handlers.FeedsHandler();
-router.get('/feeds/:id', feedsHandler.get);
-
-// Albums APIs
-const albumHandler = new handlers.AlbumHandler();
-router.get('/albums', albumHandler.get);
-router.get('/albums/:id', albumHandler.getOne);
-router.get('/album/:name/photos', albumHandler.getPhotosByAlbumName);
-router.post('/albums', albumHandler.add);
-router.delete('/albums/:name', albumHandler.deleteByName);
-router.delete('/albums/:id', albumHandler.deleteById);
-router.put('/albums/:id', albumHandler.update);
-
-// Food Menu APIs
-const foodMenuHandler = new handlers.FoodMenuHandler();
-router.get('/foodmenu', foodMenuHandler.get);
-router.get('/foodmenu/day/:date', foodMenuHandler.getOneByDate);
-router.get('/foodmenu/:id', foodMenuHandler.getOne);
-router.get('/foodmenu/:id/food', foodMenuHandler.getFood);
-router.post('/foodmenu', foodMenuHandler.add);
-router.post('/foodmenu/:id/food', foodMenuHandler.addFoodMenuFood);
-router.delete('/foodmenu/:id', foodMenuHandler.deleteById);
-router.put('/foodmenu/:id', foodMenuHandler.update);
-
 // Class APIs
-const classHandler = new handlers.ClassHandler();
-router.get('/classes', classHandler.get); //GET all classes
-router.get('/classes/:id', classHandler.getOneById); //GET class by ID
-router.get('/classes/:name', classHandler.getOneByName); //GET class by name
-router.get('/classrequest/:id', classHandler.getClassRequests); //GET class requests
-router.get('/schoolrequest', classHandler.getSchoolRequests); //GET school requests
-router.get('/classactivity/:id', classHandler.getClassActivities); //GET class activities
-router.get('/schoolactivity', classHandler.getSchoolActivities); //GET school activities
-router.get('/classchild/:id', classHandler.getClassChildren); //GET children by class
-router.get('/schoolchild', classHandler.getSchoolChildren); //GET children in school
-router.post('/classes', classHandler.add); //Add class
-router.post('/classactivity/:id', classHandler.addActivity); //Add class activities
-router.post('/schoolactivity', classHandler.addActivityToSchool); //Add school activities
-router.post('/class/:id/request', classHandler.addRequest); //Add class requests
-router.post('/school/request', classHandler.addRequestToSchool); //Add school requests
-router.post('/classchild/:id', classHandler.addChild); //Add child to class !!Might need Modification
-router.delete('/classes/:id', classHandler.delete); //Delete class by ID
-router.put('/classes/:id', classHandler.update); //Update class by ID
+const Class = new handlers.ClassHandler();
+router.get('/classes', Class.list); //List all classes
+router.get('/class', Class.get);
+router.post('/class', Class.add);
+router.put('/class', Class.update);
+router.delete('/class', Class.delete); //might be changed
+
+// Section APIs
+const Section = new handlers.SectionHandler();
+router.get('/sections', Section.list); //List all sections
+router.get('/class/section', Section.listInClass); //List all sections in class
+router.get('/section', Section.get);
+router.post('/section', Section.add);
+router.put('/section', Section.update);
+router.delete('/section', Section.delete); //might be changed
 
 // Child APIs
-const childHandler = new handlers.ChildHandler();
-router.get('/children', childHandler.get);
-router.get('/children/:id', childHandler.getOne);
-router.get('/children/:id/agenda', childHandler.getChildAgenda);
-router.post('/children', childHandler.add);
-router.delete('/children/:id', childHandler.deleteById);
-router.put('/children/:id', childHandler.update);
-router.post('/children/:id/activities', childHandler.addActivity);
-router.post('/children/:id/agenda', childHandler.addAgenda);
-router.get('/children/:id/photos', childHandler.getChildPhotos);
-router.get('/children/:id/activities', childHandler.getChildActivities);
-router.put('/children/:id', childHandler.update);
+const Child = new handlers.ChildHandler();
+router.get('/children', Child.list); //List all children
+router.get('/class/children', Child.listInClass); //List all children in class
+router.get('/class/section/children', Child.listInSection); //List all children in section
+router.get('/child', Child.get);
+router.post('/child', Child.add);
+router.put('/child', Child.update);
+router.delete('/child', Child.delete); //might be changed
+
+// User APIs
+const User = new handlers.UserHandler();
+router.get('/users', User.list); //List all users
+router.get('/class/teachers', User.listInClass); //List all sections in class
+router.get('/user', User.get);
+router.post('/user', User.add);
+router.put('/user', User.update);
+router.delete('/user', User.delete); //might be changed
+
+// Request APIs
+const Request = new handlers.RequestHandler();
+router.get('/requests', Request.list); //List all requests
+router.get('/request', Request.get);
+router.post('/request', Request.add);
+router.put('/request', Request.update);
+router.delete('/request', Request.delete); //might be changed
 
 // Event APIs
-const eventHandler = new handlers.EventHandler();
-router.get('/events', eventHandler.get);
-router.get('/events/:id', eventHandler.getOne);
-router.post('/events/:name/:description/:date', eventHandler.addWithImage);
-router.delete('/events/:name', eventHandler.deleteByName);
-router.delete('/events/:id', eventHandler.deleteById);
-router.put('/events/:id', eventHandler.update);
+const Event = new handlers.EventHandler();
+router.get('/events', Event.list); //List all events
+router.get('/event', Event.get);
+router.post('/event', Event.add);
+router.put('/event', Event.update);
+router.delete('/event', Event.delete); //might be changed
 
-// Photo APIs
-const photosHandler = new handlers.PhotosHandler();
-router.get('/photos', photosHandler.get);
-router.post('/photos', photosHandler.add);
-router.delete('/photos', photosHandler.deleteByName);
+// Agenda APIs
+const Agenda = new handlers.AgendaHandler();
+router.get('/agendas', Agenda.list); //List all agendas
+router.get('/agenda', Agenda.get);
+router.get('/attendance', Agenda.getAttendance); // Attendance API
+router.post('/agenda', Agenda.add);
+router.put('/agenda', Agenda.update);
+router.delete('/agenda', Agenda.delete); //might be changed
+
+// Message APIs
+const Message = new handlers.MessageHandler();
+router.get('/messages', Message.list); //List all messages
+router.get('/message', Message.get);
+router.post('/message', Message.add);
+router.put('/message', Message.update);
+router.delete('/message', Message.delete); //might be changed
 
 module.exports = router;
