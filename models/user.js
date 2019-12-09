@@ -4,7 +4,26 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 // Define the User model schema
-const User = new mongoose.Schema({});
+const User = new mongoose.Schema({
+    lastName: String,
+    firstName: String,
+    dateOfBirth: Date,
+    gender: String,
+    phoneNumber: Number,
+    email: {
+        type: String,
+        lowercase: true,
+        required: true,
+        index: {unique: true}
+    },
+    password: String,
+    role: {
+        type: String,
+        enum: ['Teacher', 'Parent', 'Admin'],
+        default: 'Parent'
+    },
+    children: [{type: mongoose.Schema.Types.ObjectId, ref: 'Child'}]
+});
 
 
 /**
