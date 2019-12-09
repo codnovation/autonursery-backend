@@ -1,3 +1,5 @@
+'use strict';
+
 import Agenda from '../../models/agenda';
 import Children from '../../models/children';
 
@@ -58,7 +60,7 @@ export class AgendaHandler {
     deleteById(req, res) {
         Children.findOne({agenda: req.params.id}).populate('agenda').then(child => {
             child.agenda = child.agenda.filter(a => {
-                return a._id != req.params.id;
+                return a._id !== req.params.id;
             });
             if (child.currentAgenda === req.params.id) {
                 if (child.agenda.length <= 0) child.currentAgenda = undefined;

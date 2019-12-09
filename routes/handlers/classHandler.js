@@ -1,3 +1,5 @@
+'use strict';
+
 import Class from '../../models/class';
 import RequestSchema from '../../models/requests';
 import ActivitySchema from '../../models/activity';

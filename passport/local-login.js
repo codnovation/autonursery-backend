@@ -1,3 +1,5 @@
+"use strict";
+
 const jwt = require('jsonwebtoken');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const config = require('../config');

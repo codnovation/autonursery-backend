@@ -1,3 +1,5 @@
+'use strict';
+
 import User from "../models/user";
 // const User = require('mongoose').model('ahmad');
 const PassportLocalStrategy = require('passport-local').Strategy;

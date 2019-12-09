@@ -1,3 +1,5 @@
+'use strict';
+
 import Messages from '../../models/messages';
 
 /**

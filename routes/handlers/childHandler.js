@@ -1,3 +1,5 @@
+'use strict';
+
 import Children from '../../models/children';
 import ActivitySchema from '../../models/activity';
 import AgendaSchema from '../../models/agenda';

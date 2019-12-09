@@ -1,3 +1,5 @@
+'use strict';
+
 import RequestSchema from '../../models/requests';
 
 // import serverKey from '../../serverKey';

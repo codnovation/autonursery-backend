@@ -1,3 +1,5 @@
+'use strict';
+
 import FoodMenu from '../../models/foodMenu';
 import Food from '../../models/food';
 
@@ -14,7 +16,7 @@ const options = {
     day: 'numeric',
     year: 'numeric',
     month: 'numeric'
-}
+};
 
 function getDate(day, month, year) {
     console.log(new Date(Date.UTC(year, month - 1, day, 0, 0, 0)));

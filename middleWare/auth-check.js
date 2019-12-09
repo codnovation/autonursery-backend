@@ -1,3 +1,5 @@
+"use strict";
+
 import User from '../models/user';
 
 const jwt = require('jsonwebtoken');

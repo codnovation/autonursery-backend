@@ -1,3 +1,5 @@
+'use strict';
+
 import Food from '../../models/food';
 
 /**

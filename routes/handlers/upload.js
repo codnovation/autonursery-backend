@@ -1,3 +1,5 @@
+'use strict';
+
 import AlbumSchema from '../../models/album';
 import PhotoSchema from '../../models/photo';
 
@@ -11,7 +13,7 @@ import PhotoSchema from '../../models/photo';
  */
 
 export class UploadHandler {
-    upload(req, res, next) {
+    upload(req, res) {
         let uploadFile = req.files.file;
         const fileName = req.files.file.name;
         AlbumSchema.findById(req.params.id)

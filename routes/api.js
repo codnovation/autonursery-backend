@@ -1,18 +1,6 @@
-import {MessagesHandler} from './handlers/messagesHandler';
-import {FoodHandler} from './handlers/foodHandler';
-import {UserHandler} from './handlers/userHandler';
-import {RequestHandler} from './handlers/requestsHandler';
-import {AlbumHandler} from './handlers/albumHandler';
-import {UploadHandler} from './handlers/upload';
-import {ClassHandler} from './handlers/classHandler';
-import {ChildHandler} from './handlers/childHandler';
-import {FoodMenuHandler} from './handlers/foodMenuHandler';
-import {EventHandler} from './handlers/eventHandler';
-import {ActivityHandler} from './handlers/activityHandler';
-import {PhotosHandler} from './handlers/photosHandler';
-import {AgendaHandler} from './handlers/agendaHandler';
-import {FeedsHandler} from './handlers/feedsHandler';
-import {AttendanceHandler} from './handlers/attendanceHandler';
+'use strict';
+
+import handlers from './handlers';
 
 const express = require('express');
 
@@ -27,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 // Activity APIs
-const activityHandler = new ActivityHandler();
+const activityHandler = new handlers.ActivityHandler();
 router.get('/activities', activityHandler.get);
 router.get('/activities/:id', activityHandler.getOne);
 router.post('/activities', activityHandler.add);
@@ -35,7 +23,7 @@ router.delete('/activities/:id', activityHandler.deleteById);
 router.put('/activities/:id', activityHandler.update);
 
 // Agenda APIs
-const agendaHandler = new AgendaHandler();
+const agendaHandler = new handlers.AgendaHandler();
 router.get('/agenda', agendaHandler.get);
 router.get('/agenda/:id', agendaHandler.getOne);
 router.post('/agenda', agendaHandler.add);
@@ -43,11 +31,11 @@ router.delete('/agenda/:id', agendaHandler.deleteById);
 router.put('/agenda/:id', agendaHandler.update);
 
 // Attendance API
-const attendanceHandler = new AttendanceHandler();
+const attendanceHandler = new handlers.AttendanceHandler();
 router.get('/agenda/:id/:day', attendanceHandler.getAttendanceByChild);
 
 // Messages APIs
-const messageHandler = new MessagesHandler();
+const messageHandler = new handlers.MessagesHandler();
 router.get('/messages', messageHandler.get);
 router.get('/messages/:id', messageHandler.getOne);
 router.post('/messages', messageHandler.add);
@@ -55,7 +43,7 @@ router.delete('/messages/:id', messageHandler.deleteById);
 router.put('/messages/:id', messageHandler.update);
 
 // Food APIs
-const foodHandler = new FoodHandler();
+const foodHandler = new handlers.FoodHandler();
 router.get('/food', foodHandler.get);
 router.post('/food', foodHandler.add);
 router.delete('/food/:name', foodHandler.deleteByName);
@@ -63,14 +51,14 @@ router.delete('/food/:id', foodHandler.deleteById);
 router.put('/food/:id', foodHandler.update);
 
 // Request APIs
-const requestHandler = new RequestHandler();
+const requestHandler = new handlers.RequestHandler();
 router.get('/requests', requestHandler.get);
 router.post('/requests', requestHandler.add);
 router.put('/requests/:id', requestHandler.update);
 router.delete('/requests/:id', requestHandler.deleteById);
 
 // User APIs
-const userHandler = new UserHandler();
+const userHandler = new handlers.UserHandler();
 router.get('/users', userHandler.get);
 router.get('/user/:id', userHandler.getOne);
 router.get('/user/:id/messages', userHandler.getUserMessages);
@@ -86,15 +74,15 @@ router.put('/user/:id', userHandler.update);
 router.post('/user/:id/resetpassword', userHandler.resetPassword);
 
 // File Upload API
-const uploadHandler = new UploadHandler();
+const uploadHandler = new handlers.UploadHandler();
 router.post('/upload/:id', uploadHandler.upload);
 
 // Feed API
-const feedsHandler = new FeedsHandler();
+const feedsHandler = new handlers.FeedsHandler();
 router.get('/feeds/:id', feedsHandler.get);
 
 // Albums APIs
-const albumHandler = new AlbumHandler();
+const albumHandler = new handlers.AlbumHandler();
 router.get('/albums', albumHandler.get);
 router.get('/albums/:id', albumHandler.getOne);
 router.get('/album/:name/photos', albumHandler.getPhotosByAlbumName);
@@ -104,7 +92,7 @@ router.delete('/albums/:id', albumHandler.deleteById);
 router.put('/albums/:id', albumHandler.update);
 
 // Food Menu APIs
-const foodMenuHandler = new FoodMenuHandler();
+const foodMenuHandler = new handlers.FoodMenuHandler();
 router.get('/foodmenu', foodMenuHandler.get);
 router.get('/foodmenu/day/:date', foodMenuHandler.getOneByDate);
 router.get('/foodmenu/:id', foodMenuHandler.getOne);
@@ -115,7 +103,7 @@ router.delete('/foodmenu/:id', foodMenuHandler.deleteById);
 router.put('/foodmenu/:id', foodMenuHandler.update);
 
 // Class APIs
-const classHandler = new ClassHandler();
+const classHandler = new handlers.ClassHandler();
 router.get('/classes', classHandler.get); //GET all classes
 router.get('/classes/:id', classHandler.getOneById); //GET class by ID
 router.get('/classes/:name', classHandler.getOneByName); //GET class by name
@@ -135,7 +123,7 @@ router.delete('/classes/:id', classHandler.delete); //Delete class by ID
 router.put('/classes/:id', classHandler.update); //Update class by ID
 
 // Child APIs
-const childHandler = new ChildHandler();
+const childHandler = new handlers.ChildHandler();
 router.get('/children', childHandler.get);
 router.get('/children/:id', childHandler.getOne);
 router.get('/children/:id/agenda', childHandler.getChildAgenda);
@@ -146,10 +134,10 @@ router.post('/children/:id/activities', childHandler.addActivity);
 router.post('/children/:id/agenda', childHandler.addAgenda);
 router.get('/children/:id/photos', childHandler.getChildPhotos);
 router.get('/children/:id/activities', childHandler.getChildActivities);
-router.put('/children/:id', childHandler.update)
+router.put('/children/:id', childHandler.update);
 
 // Event APIs
-const eventHandler = new EventHandler();
+const eventHandler = new handlers.EventHandler();
 router.get('/events', eventHandler.get);
 router.get('/events/:id', eventHandler.getOne);
 router.post('/events/:name/:description/:date', eventHandler.addWithImage);
@@ -158,9 +146,9 @@ router.delete('/events/:id', eventHandler.deleteById);
 router.put('/events/:id', eventHandler.update);
 
 // Photo APIs
-const photosHandler = new PhotosHandler();
+const photosHandler = new handlers.PhotosHandler();
 router.get('/photos', photosHandler.get);
 router.post('/photos', photosHandler.add);
-router.delete('/photos/', photosHandler.deleteByName);
+router.delete('/photos', photosHandler.deleteByName);
 
 module.exports = router;

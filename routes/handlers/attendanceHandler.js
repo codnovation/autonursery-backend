@@ -1,3 +1,5 @@
+'use strict';
+
 import Children from '../../models/children';
 
 /**

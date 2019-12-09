@@ -1,3 +1,5 @@
+'use strict';
+
 import mongoose from 'mongoose';
 
 module.exports.connect = (uri) => {

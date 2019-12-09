@@ -1,3 +1,5 @@
+'use strict';
+
 import Event from '../../models/event';
 
 /**
