@@ -43,7 +43,7 @@ router.delete('/child', Child.delete); //might be changed
 // User APIs
 const User = new handlers.UserHandler();
 router.get('/users', User.list); //List all users
-router.get('/class/teachers', User.listInClass); //List all sections in class
+router.get('/class/teachers', Class.listInClass); //List all sections in class
 router.get('/user', User.get);
 router.post('/user', User.add);
 router.put('/user', User.update);
