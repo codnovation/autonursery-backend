@@ -49,6 +49,10 @@ router.post('/user', User.add);
 router.put('/user', User.update);
 router.delete('/user', User.delete); //might be changed
 
+// Password APIs
+router.get('/password/forgot', User.forgotPassword); //Forgot password
+router.put('/password/reset', User.resetPassword); // Reset Password
+
 // Request APIs
 const Request = new handlers.RequestHandler();
 router.get('/requests', Request.list); //List all requests
