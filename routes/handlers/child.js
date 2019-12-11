@@ -1,7 +1,6 @@
 'use strict';
 
 import Child from '../../models/child';
-import Children from "../../old/models/children";
 
 export class ChildHandler {
     // List all children in nursery
@@ -18,16 +17,6 @@ export class ChildHandler {
             });
     }
 
-    // List all children in class
-    listInClass(req, res) {
-
-    }
-
-    // List all children in section
-    listInSection(req, res) {
-
-    }
-
     // Get one child by id
     get(req, res) {
         Child.findById(req.query.id)
@@ -40,10 +29,6 @@ export class ChildHandler {
             .catch(err => {
                 return res.status(400).json(err);
             });
-    }
-
-    // Add child
-    add(req, res) {
     }
 
     // Update child

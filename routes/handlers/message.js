@@ -1,7 +1,6 @@
 'use strict';
 
 import Message from '../../models/message';
-import Messages from "../../old/models/messages";
 
 export class MessageHandler {
     // List all message
@@ -46,7 +45,7 @@ export class MessageHandler {
 
     // Update message
     update(req, res) {
-        Messages.findByIdAndUpdate(req.query.id, req.body)
+        Message.findByIdAndUpdate(req.query.id, req.body)
             .then(result => {
                 return res.status(200).json(result);
             })
@@ -57,7 +56,7 @@ export class MessageHandler {
 
     // Delete message
     delete(req, res) {
-        Messages.findByIdAndRemove(req.query.id)
+        Message.findByIdAndRemove(req.query.id)
             .then(result => {
                 return res.status(200).json(result);
             })

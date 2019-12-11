@@ -1,6 +1,7 @@
 'use strict';
 
 import Agenda from '../../models/agenda';
+import Child from '../../models/child';
 
 export class AgendaHandler {
     // List all agenda
@@ -30,10 +31,6 @@ export class AgendaHandler {
             });
     }
 
-    getAttendance(req, res) {
-
-    }
-
     // Add agenda
     add(req, res) {
         Agenda.create(req.body)
@@ -57,9 +54,5 @@ export class AgendaHandler {
             .catch(err => {
                 return res.status(400).json(err);
             });
-    }
-
-    // Delete agenda
-    delete(req, res) {
     }
 }

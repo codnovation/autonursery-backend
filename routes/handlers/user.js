@@ -1,6 +1,7 @@
 'use strict';
 
 import User from '../../models/user';
+import bcrypt from "bcryptjs";
 
 export class UserHandler {
     // List all user
@@ -15,10 +16,6 @@ export class UserHandler {
             .catch(err => {
                 res.json(err);
             });
-    }
-
-    //List teachers of class
-    listInClass(req, res) {
     }
 
     // Get one user by id
@@ -38,15 +35,7 @@ export class UserHandler {
 
     // Add user
     add(req, res) {
-        User.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            dateOfBirth: req.body.dateOfBirth,
-            phoneNumber: req.body.phoneNumber,
-            password: req.body.password,
-            role: req.body.role
-        })
+        User.create(req.body)
             .then(result => {
                 return res.status(200).json(result);
             })
@@ -79,7 +68,27 @@ export class UserHandler {
 
     // Reset password
     resetPassword(req, res) {
+        bcrypt.genSalt((saltError, salt) => {
+            if (saltError) {
+                res.status(500).json({msg: saltError});
+            }
 
+            bcrypt.hash(req.body.password, salt, (hashError, hash) => {
+                if (hashError) {
+                    res.status(500).json({msg: hashError});
+                }
+
+                User.findByIdAndUpdate(req.query.id, {
+                    password: hash
+                }).then(user => {
+                    if (!user) {
+                        return res.status(404).end();
+                    }
+
+                    return res.status(200).json(user);
+                });
+            });
+        });
     }
 
     // Forgot password

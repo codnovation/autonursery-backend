@@ -13,6 +13,15 @@ router.get('/', (req, res) => {
     });
 });
 
+// Common APIs
+const Common = new handlers.CommonHandler();
+router.get('/class/teachers', Common.listTeachersInClass); //List all sections in class
+router.get('/class/section', Common.listSectionsInClass); //List all sections in class
+router.get('/class/children', Common.listChildrenInClass); //List all children in class
+router.get('/class/section/children', Common.listChildrenInSection); //List all children in section
+router.post('/child', Common.addChild);
+router.delete('/agenda', Common.deleteAgenda); //might be changed
+
 // Class APIs
 const Class = new handlers.ClassHandler();
 router.get('/classes', Class.list); //List all classes
@@ -24,7 +33,6 @@ router.delete('/class', Class.delete); //might be changed
 // Section APIs
 const Section = new handlers.SectionHandler();
 router.get('/sections', Section.list); //List all sections
-router.get('/class/section', Section.listInClass); //List all sections in class
 router.get('/section', Section.get);
 router.post('/section', Section.add);
 router.put('/section', Section.update);
@@ -33,17 +41,13 @@ router.delete('/section', Section.delete); //might be changed
 // Child APIs
 const Child = new handlers.ChildHandler();
 router.get('/children', Child.list); //List all children
-router.get('/class/children', Child.listInClass); //List all children in class
-router.get('/class/section/children', Child.listInSection); //List all children in section
 router.get('/child', Child.get);
-router.post('/child', Child.add);
 router.put('/child', Child.update);
 router.delete('/child', Child.delete); //might be changed
 
 // User APIs
 const User = new handlers.UserHandler();
 router.get('/users', User.list); //List all users
-router.get('/class/teachers', Class.listInClass); //List all sections in class
 router.get('/user', User.get);
 router.post('/user', User.add);
 router.put('/user', User.update);
@@ -76,7 +80,6 @@ router.get('/agenda', Agenda.get);
 router.get('/attendance', Agenda.getAttendance); // Attendance API
 router.post('/agenda', Agenda.add);
 router.put('/agenda', Agenda.update);
-router.delete('/agenda', Agenda.delete); //might be changed
 
 // Message APIs
 const Message = new handlers.MessageHandler();

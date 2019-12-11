@@ -1,7 +1,6 @@
 'use strict';
 
 import Event from '../../models/event';
-import Class from "../../models/class";
 
 export class EventHandler {
     // List all event

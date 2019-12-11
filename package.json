@@ -2,17 +2,15 @@
   "name": "nursery-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "grunt",
     "start": "nodemon old/app.js --exec babel-node --presets babel-preset-env"
   },
   "author": "Fadi Nasr",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-cli": "^6.26.0",
-    "babel-register": "^6.26.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -33,9 +31,23 @@
     "validator": "^10.4.0"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^5.2.0",
+    "babel-register": "^6.26.0",
+    "cross-env": "^6.0.3",
     "eslint-config-rallycoding": "^3.2.0",
     "grunt": "^1.0.4",
-    "grunt-contrib-jshint": "^2.1.0"
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-coveralls": "^2.0.0",
+    "grunt-env": "^1.0.1",
+    "grunt-istanbul": "^0.8.0",
+    "grunt-mocha": "^1.2.0",
+    "grunt-mocha-test": "^0.13.3",
+    "mocha": "^6.2.2"
   }
 }

@@ -1,7 +1,6 @@
 'use strict';
 
 import Section from '../../models/section';
-import Request from "../../models/request";
 
 export class SectionHandler {
     // List all section
@@ -16,10 +15,6 @@ export class SectionHandler {
             .catch(err => {
                 return res.status(400).json(err);
             });
-    }
-
-    listInClass(req, res) {
-
     }
 
     // Get one section by id

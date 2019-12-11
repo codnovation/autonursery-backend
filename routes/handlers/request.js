@@ -1,8 +1,6 @@
 'use strict';
 
 import Request from '../../models/request';
-import Message from "../../models/message";
-import Messages from "../../old/models/messages";
 
 export class RequestHandler {
     // List all request
