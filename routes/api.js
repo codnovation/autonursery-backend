@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 const Common = new handlers.CommonHandler();
 router.get('/attendance', Common.getAttendance); // Attendance API
 router.post('/child', Common.addChild);
+router.post('/section', Common.addSection);
 router.delete('/agenda', Common.deleteAgenda); //might be changed
 
 
@@ -36,7 +37,6 @@ const Section = new handlers.SectionHandler();
 router.get('/sections', Section.list); //List all sections
 router.get('/section', Section.get);
 router.get('/class/section/children', Section.listChildrenInSection); //List all children in section
-router.post('/section', Section.add);
 router.put('/section', Section.update);
 router.delete('/section', Section.delete); //might be changed
 

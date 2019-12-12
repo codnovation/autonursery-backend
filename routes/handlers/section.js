@@ -41,17 +41,6 @@ export class SectionHandler {
             });
     }
 
-    // Add section
-    add(req, res) {
-        Section.create(req.body)
-            .then(section => {
-                return res.status(200).json(section);
-            })
-            .catch(err => {
-                return res.status(400).json(err);
-            });
-    }
-
     // Update section
     update(req, res) {
         Section.findByIdAndUpdate(req.query.id, req.body)

@@ -4,8 +4,14 @@ import mongoose from 'mongoose';
 
 // Define the request model schema
 const RequestsSchema = new mongoose.Schema({
-    description: String,
-    date: Date,
+    description: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
     status: {
         type: String,
         enum: ['Pending', 'Completed'],
@@ -18,10 +24,19 @@ const RequestsSchema = new mongoose.Schema({
     },
     title: {
         type: String,
-        default: 'Request'
+        default: 'Request',
+        required: true
     },
-    parents: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    child: {type: mongoose.Schema.Types.ObjectId, ref: 'Child'}
+    parents: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }],
+    child: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Child',
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Request', RequestsSchema);

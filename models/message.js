@@ -21,13 +21,11 @@ const MessagesSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    to: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        }
-    ]
+    to: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }]
 });
 
 module.exports = mongoose.model('Message', MessagesSchema);

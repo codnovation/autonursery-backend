@@ -10,20 +10,44 @@ import {AgendaHandler} from './agenda';
 import {MessageHandler} from './message';
 
 import models from '../../models/index';
-import Agenda from "../../models/agenda";
 
 class CommonHandler {
-
-    // Add child
-    addChild(req, res) {
-        models.Child
-            .create(req.body)
-            .then(result => {
-                return res.status(200).json(result);
-            })
-            .catch(err => {
+    // Add section
+    async addSection(req, res) {
+        if (req.body) {
+            try {
+                const section = await models.Section.create(req.body);
+                await models.Class
+                    .findByIdAndUpdate(section.class, {'$push': {sections: section._id}}).exec();
+                return res.status(200).json(section);
+            } catch (err) {
                 return res.status(400).json(err);
-            });
+            }
+        } else {
+            return res.status(500);
+        }
+    }
+
+    // // Add child
+    async addChild(req, res) {
+        if (req.body) {
+            try {
+                const child = await models.Child.create(req.body);
+                await child.parents.forEach(parent => {
+                    models.User
+                        .findByIdAndUpdate(parent, {'$push': {children: child._id}}).exec();
+                });
+                await models.Section
+                    .findByIdAndUpdate(child.section, {'$push': {children: child._id}}).exec();
+                await models.Class
+                    .findByIdAndUpdate(child.class, {'$push': {children: child._id}}).exec();
+                return res.status(200).json(child);
+            } catch (err) {
+                return res.status(400).json(err);
+            }
+        } else {
+            return res.status(500);
+        }
     }
 
     // Get Child attendance by Day
