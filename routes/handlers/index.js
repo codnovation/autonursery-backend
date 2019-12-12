@@ -9,20 +9,21 @@ import {EventHandler} from './event';
 import {AgendaHandler} from './agenda';
 import {MessageHandler} from './message';
 
+import models from '../../models/index';
+import Agenda from "../../models/agenda";
+
 class CommonHandler {
-
-    // List all children in class
-    listChildrenInClass(req, res) {
-
-    }
-
-    // List all children in section
-    listChildrenInSection(req, res) {
-
-    }
 
     // Add child
     addChild(req, res) {
+        models.Child
+            .create(req.body)
+            .then(result => {
+                return res.status(200).json(result);
+            })
+            .catch(err => {
+                return res.status(400).json(err);
+            });
     }
 
     // Get Child attendance by Day
@@ -32,15 +33,6 @@ class CommonHandler {
 
     // Delete agenda
     deleteAgenda(req, res) {
-    }
-
-    // List sections in class
-    listSectionsInClass(req, res) {
-
-    }
-
-    //List teachers of class
-    listTeachersInClass(req, res) {
     }
 }
 

@@ -4,9 +4,19 @@ import mongoose from 'mongoose';
 
 // Define the event model schema
 const EventSchema = new mongoose.Schema({
-    name: String,
-    description: String,
-    date: Date,
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
     type: String
 });
 

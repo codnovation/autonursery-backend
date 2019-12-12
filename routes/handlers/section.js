@@ -17,6 +17,16 @@ export class SectionHandler {
             });
     }
 
+    // List all children in section
+    listChildrenInSection(req, res) {
+        Section.findById(req.query.id).populate('children').select('children').then(results => {
+            if (!results) {
+                return res.status(404).end();
+            }
+            return res.status(200).json(results);
+        });
+    }
+
     // Get one section by id
     get(req, res) {
         Section.findById(req.query.id)

@@ -17,6 +17,36 @@ export class ClassHandler {
             });
     }
 
+    // List all children in class
+    listChildrenInClass(req, res) {
+        Class.findById(req.query.id).populate('children').select('children').then(results => {
+            if (!results) {
+                return res.status(404).end();
+            }
+            return res.status(200).json(results);
+        });
+    }
+
+    // List sections in class
+    listSectionsInClass(req, res) {
+        Class.findById(req.query.id).populate('sections').select('sections').then(results => {
+            if (!results) {
+                return res.status(404).end();
+            }
+            return res.status(200).json(results);
+        });
+    }
+
+    //List teachers of class
+    listTeachersInClass(req, res) {
+        Class.findById(req.query.id).populate('teachers').select('teachers').then(results => {
+            if (!results) {
+                return res.status(404).end();
+            }
+            return res.status(200).json(results);
+        });
+    }
+
     // Get one class by id
     get(req, res) {
         Class.findById(req.query.id)

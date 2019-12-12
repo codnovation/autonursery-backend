@@ -4,8 +4,16 @@ import mongoose from 'mongoose';
 
 // Define the agenda model schema
 const AgendaSchema = new mongoose.Schema({
-    date: Date,
-    child: {type: mongoose.Schema.Types.ObjectId, ref: 'Child'},
+    date: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
+    child: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Child',
+        required: true
+    },
     attendance: {
         type: Boolean,
         default: true

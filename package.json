@@ -1,11 +1,11 @@
 {
-  "name": "nursery-app",
+  "name": "auto-nursery-app",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "grunt",
-    "start": "nodemon old/app.js --exec babel-node --presets babel-preset-env"
+    "test": "grunt test",
+    "start": "nodemon app.js --exec babel-node --presets @babel/preset-env"
   },
   "author": "Fadi Nasr",
   "license": "ISC",
@@ -31,11 +31,12 @@
     "validator": "^10.4.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
     "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
     "@babel/preset-env": "^7.7.6",
-    "babel-cli": "^6.26.0",
+    "@babel/register": "^7.7.4",
     "babel-plugin-istanbul": "^5.2.0",
-    "babel-register": "^6.26.0",
     "cross-env": "^6.0.3",
     "eslint-config-rallycoding": "^3.2.0",
     "grunt": "^1.0.4",

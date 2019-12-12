@@ -4,11 +4,30 @@ import mongoose from 'mongoose';
 
 // Define the messages model schema
 const MessagesSchema = new mongoose.Schema({
-    title: String,
-    date: Date,
-    body: String,
-    from: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    to: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+    title: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    body: {
+        type: String,
+        required: true
+    },
+    from: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    to: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        }
+    ]
 });
 
 module.exports = mongoose.model('Message', MessagesSchema);

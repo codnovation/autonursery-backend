@@ -15,17 +15,18 @@ router.get('/', (req, res) => {
 
 // Common APIs
 const Common = new handlers.CommonHandler();
-router.get('/class/teachers', Common.listTeachersInClass); //List all sections in class
-router.get('/class/section', Common.listSectionsInClass); //List all sections in class
-router.get('/class/children', Common.listChildrenInClass); //List all children in class
-router.get('/class/section/children', Common.listChildrenInSection); //List all children in section
+router.get('/attendance', Common.getAttendance); // Attendance API
 router.post('/child', Common.addChild);
 router.delete('/agenda', Common.deleteAgenda); //might be changed
+
 
 // Class APIs
 const Class = new handlers.ClassHandler();
 router.get('/classes', Class.list); //List all classes
 router.get('/class', Class.get);
+router.get('/class/teachers', Class.listTeachersInClass); //List all sections in class
+router.get('/class/section', Class.listSectionsInClass); //List all sections in class
+router.get('/class/children', Class.listChildrenInClass); //List all children in class
 router.post('/class', Class.add);
 router.put('/class', Class.update);
 router.delete('/class', Class.delete); //might be changed
@@ -34,6 +35,7 @@ router.delete('/class', Class.delete); //might be changed
 const Section = new handlers.SectionHandler();
 router.get('/sections', Section.list); //List all sections
 router.get('/section', Section.get);
+router.get('/class/section/children', Section.listChildrenInSection); //List all children in section
 router.post('/section', Section.add);
 router.put('/section', Section.update);
 router.delete('/section', Section.delete); //might be changed
@@ -77,7 +79,6 @@ router.delete('/event', Event.delete); //might be changed
 const Agenda = new handlers.AgendaHandler();
 router.get('/agendas', Agenda.list); //List all agendas
 router.get('/agenda', Agenda.get);
-router.get('/attendance', Agenda.getAttendance); // Attendance API
 router.post('/agenda', Agenda.add);
 router.put('/agenda', Agenda.update);
 

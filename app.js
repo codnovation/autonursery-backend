@@ -6,16 +6,16 @@ import logger from 'morgan';
 import expressSession from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
-import localSignupStrategy from '../passport/local-signup';
-import localLoginStrategy from '../passport/local-login';
-import authCheckMiddleware from '../middleWare/auth-check';
+import localSignupStrategy from './passport/local-signup';
+import localLoginStrategy from './passport/local-login';
+import authCheckMiddleware from './middleWare/auth-check';
 
 const fileUpload = require('express-fileupload');
 
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
-const config = require('../config');
+const config = require('./config');
 
 // connect to the database and load models
 const app = express();
