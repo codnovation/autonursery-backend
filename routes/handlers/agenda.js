@@ -30,17 +30,6 @@ export class AgendaHandler {
             });
     }
 
-    // Add agenda
-    add(req, res) {
-        Agenda.create(req.body)
-            .then(result => {
-                return res.status(200).json(result);
-            })
-            .catch(err => {
-                return res.status(400).json(err);
-            });
-    }
-
     // Update agenda
     update(req, res) {
         Agenda.findByIdAndUpdate(req.query.id, req.body)

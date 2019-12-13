@@ -18,7 +18,11 @@ const Common = new handlers.CommonHandler();
 router.get('/attendance', Common.getAttendance); // Attendance API
 router.post('/child', Common.addChild);
 router.post('/section', Common.addSection);
+router.post('/request', Common.addRequest);
+router.post('/agenda', Common.addAgenda);
+router.post('/message', Common.addMessage);
 router.delete('/agenda', Common.deleteAgenda); //might be changed
+router.delete('/message', Common.deleteMessage); //might be changed
 
 
 // Class APIs
@@ -63,7 +67,6 @@ router.put('/password/reset', User.resetPassword); // Reset Password
 const Request = new handlers.RequestHandler();
 router.get('/requests', Request.list); //List all requests
 router.get('/request', Request.get);
-router.post('/request', Request.add);
 router.put('/request', Request.update);
 router.delete('/request', Request.delete); //might be changed
 
@@ -79,15 +82,12 @@ router.delete('/event', Event.delete); //might be changed
 const Agenda = new handlers.AgendaHandler();
 router.get('/agendas', Agenda.list); //List all agendas
 router.get('/agenda', Agenda.get);
-router.post('/agenda', Agenda.add);
 router.put('/agenda', Agenda.update);
 
 // Message APIs
 const Message = new handlers.MessageHandler();
 router.get('/messages', Message.list); //List all messages
 router.get('/message', Message.get);
-router.post('/message', Message.add);
 router.put('/message', Message.update);
-router.delete('/message', Message.delete); //might be changed
 
 module.exports = router;

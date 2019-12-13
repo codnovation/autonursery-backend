@@ -31,17 +31,6 @@ export class RequestHandler {
             });
     }
 
-    // Add request
-    add(req, res) {
-        Request.create(req.body)
-            .then(request => {
-                return res.status(200).json(request);
-            })
-            .catch(err => {
-                return res.status(400).json(err);
-            });
-    }
-
     // Update request
     update(req, res) {
         Request.findByIdAndUpdate(req.query.id, req.body)

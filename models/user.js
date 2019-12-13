@@ -22,7 +22,9 @@ const User = new mongoose.Schema({
         enum: ['Teacher', 'Parent', 'Admin'],
         default: 'Parent'
     },
-    children: [{type: mongoose.Schema.Types.ObjectId, ref: 'Child'}]
+    requests: [{type: mongoose.Schema.Types.ObjectId, ref: 'Request'}],
+    children: [{type: mongoose.Schema.Types.ObjectId, ref: 'Child'}],
+    messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Message'}]
 });
 
 

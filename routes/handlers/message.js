@@ -32,31 +32,9 @@ export class MessageHandler {
             });
     }
 
-    // Add message
-    add(req, res) {
-        Message.create(req.body)
-            .then(message => {
-                return res.status(200).json(message);
-            })
-            .catch(err => {
-                return res.status(400).json(err);
-            });
-    }
-
     // Update message
     update(req, res) {
         Message.findByIdAndUpdate(req.query.id, req.body)
-            .then(result => {
-                return res.status(200).json(result);
-            })
-            .catch(err => {
-                return res.status(400).json(err);
-            });
-    }
-
-    // Delete message
-    delete(req, res) {
-        Message.findByIdAndRemove(req.query.id)
             .then(result => {
                 return res.status(200).json(result);
             })
