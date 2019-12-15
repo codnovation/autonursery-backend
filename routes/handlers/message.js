@@ -7,6 +7,8 @@ export class MessageHandler {
     list(req, res) {
         Message.find({})
             .sort({date: 'desc'})
+            .populate('from')
+            .populate('to')
             .then(messages => {
                 if (!messages) {
                     return res.status(404).end();
@@ -21,6 +23,8 @@ export class MessageHandler {
     // Get one message by id
     get(req, res) {
         Message.findById(req.query.id)
+            .populate('from')
+            .populate('to')
             .then(message => {
                 if (!message) {
                     return res.status(404).end();

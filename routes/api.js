@@ -21,16 +21,18 @@ router.post('/section', Common.addSection);
 router.post('/request', Common.addRequest);
 router.post('/agenda', Common.addAgenda);
 router.post('/message', Common.addMessage);
-router.delete('/agenda', Common.deleteAgenda); //might be changed
-router.delete('/message', Common.deleteMessage); //might be changed
-
+router.delete('/agenda', Common.deleteAgenda);
+router.delete('/message', Common.deleteMessage);
+router.delete('/request', Common.deleteRequest);
+router.delete('/section', Common.deleteSection);
+router.delete('/child', Common.deleteChild); //might be changed
 
 // Class APIs
 const Class = new handlers.ClassHandler();
 router.get('/classes', Class.list); //List all classes
 router.get('/class', Class.get);
 router.get('/class/teachers', Class.listTeachersInClass); //List all sections in class
-router.get('/class/section', Class.listSectionsInClass); //List all sections in class
+router.get('/class/sections', Class.listSectionsInClass); //List all sections in class
 router.get('/class/children', Class.listChildrenInClass); //List all children in class
 router.post('/class', Class.add);
 router.put('/class', Class.update);
@@ -42,14 +44,12 @@ router.get('/sections', Section.list); //List all sections
 router.get('/section', Section.get);
 router.get('/class/section/children', Section.listChildrenInSection); //List all children in section
 router.put('/section', Section.update);
-router.delete('/section', Section.delete); //might be changed
 
 // Child APIs
 const Child = new handlers.ChildHandler();
 router.get('/children', Child.list); //List all children
 router.get('/child', Child.get);
 router.put('/child', Child.update);
-router.delete('/child', Child.delete); //might be changed
 
 // User APIs
 const User = new handlers.UserHandler();
@@ -68,7 +68,6 @@ const Request = new handlers.RequestHandler();
 router.get('/requests', Request.list); //List all requests
 router.get('/request', Request.get);
 router.put('/request', Request.update);
-router.delete('/request', Request.delete); //might be changed
 
 // Event APIs
 const Event = new handlers.EventHandler();

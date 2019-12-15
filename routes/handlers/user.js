@@ -7,6 +7,9 @@ export class UserHandler {
     // List all user
     list(req, res) {
         User.find({})
+            .populate('children')
+            .populate('requests')
+            .populate('messages')
             .then(results => {
                 if (!results) {
                     return res.status(404).end();
@@ -22,6 +25,8 @@ export class UserHandler {
     get(req, res) {
         User.findById(req.query.id)
             .populate('children')
+            .populate('requests')
+            .populate('messages')
             .then(user => {
                 if (!user) {
                     return res.status(404).end();

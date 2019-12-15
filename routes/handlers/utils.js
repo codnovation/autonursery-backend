@@ -15,8 +15,8 @@ let Utils = {
         return moment(time).format('LLL');
     },
 
-    async checkIfUserExist(id) {
-        return models.User.exists({_id: id});
+    async checkIfExist(model, id) {
+        return models[model].exists({_id: id});
     }
 };
 

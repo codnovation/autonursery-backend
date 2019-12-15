@@ -6,6 +6,7 @@ export class SectionHandler {
     // List all section
     list(req, res) {
         Section.find({})
+            .populate('children')
             .then(sections => {
                 if (!sections) {
                     return res.status(404).end();

@@ -6,6 +6,8 @@ export class RequestHandler {
     // List all request
     list(req, res) {
         Request.find({})
+            .populate('child')
+            .populate('parents')
             .then(requests => {
                 if (!requests) {
                     return res.status(404).end();
@@ -20,6 +22,8 @@ export class RequestHandler {
     // Get one request by id
     get(req, res) {
         Request.findById(req.query.id)
+            .populate('child')
+            .populate('parents')
             .then(request => {
                 if (!request) {
                     return res.status(404).end();
@@ -34,17 +38,6 @@ export class RequestHandler {
     // Update request
     update(req, res) {
         Request.findByIdAndUpdate(req.query.id, req.body)
-            .then(result => {
-                return res.status(200).json(result);
-            })
-            .catch(err => {
-                return res.status(400).json(err);
-            });
-    }
-
-    // Delete request
-    delete(req, res) {
-        Request.findByIdAndRemove(req.query.id)
             .then(result => {
                 return res.status(200).json(result);
             })

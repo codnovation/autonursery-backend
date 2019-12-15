@@ -6,6 +6,7 @@ export class AgendaHandler {
     // List all agenda
     list(req, res) {
         Agenda.find({})
+            .populate('child')
             .then(results => {
                 if (!results) {
                     return res.status(404).end();
@@ -19,6 +20,7 @@ export class AgendaHandler {
     // Get one agenda by id
     get(req, res) {
         Agenda.findById(req.query.id)
+            .populate('child')
             .then(agenda => {
                 if (!agenda) {
                     return res.status(404).end();

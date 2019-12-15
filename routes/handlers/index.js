@@ -74,22 +74,6 @@ class CommonHandler {
         }
     }
 
-    // Add agenda
-    async addAgenda(req, res) {
-        if (req.body) {
-            try {
-                const agenda = await models.Agenda.create(req.body);
-                await models.Child
-                    .findByIdAndUpdate(agenda.child, {'$push': {agendas: agenda._id}}).exec();
-                return res.status(200).json(agenda);
-            } catch (err) {
-                return res.status(400).json(err);
-            }
-        } else {
-            return res.status(500);
-        }
-    }
-
     // Add message
     async addMessage(req, res) {
         if (req.body) {
@@ -108,14 +92,105 @@ class CommonHandler {
         }
     }
 
+    // Add agenda
+    async addAgenda(req, res) {
+        if (req.body) {
+            try {
+                const agenda = await models.Agenda.create(req.body);
+                await models.Child
+                    .findByIdAndUpdate(agenda.child, {'$push': {agendas: agenda._id}}).exec();
+                return res.status(200).json(agenda);
+            } catch (err) {
+                return res.status(400).json(err);
+            }
+        } else {
+            return res.status(500);
+        }
+    }
+
+    // Delete section
+    async deleteSection(req, res) {
+        if (req.query && req.query.id) {
+            try {
+                const section = await models.Section.findByIdAndRemove(req.query.id).exec();
+                await models.Class
+                    .findByIdAndUpdate(section.class, {'$pull': {sections: section._id}}).exec();
+                await section.children.forEach(child => {
+                    models.Child
+                        .findByIdAndUpdate(child, {'$unset': {section: section._id}}).exec();
+                });
+                return res.status(200).send(`Section ${section.name} was deleted successfully`);
+            } catch (err) {
+                return res.status(400).json(err);
+            }
+        } else {
+            return res.status(500);
+        }
+    }
+
+    // Delete child
+    async deleteChild(req, res) {
+        if (req.query && req.query.id) {
+            try {
+                const child = await models.Child.findByIdAndRemove(req.query.id).exec();
+                await child.parents.forEach(parent => {
+                    models.User
+                        .findByIdAndUpdate(parent, {'$pull': {children: child._id}}).exec();
+                });
+                await child.requests.forEach(request => {
+                    models.Request
+                        .findByIdAndRemove(request).exec();
+                });
+                await child.agendas.forEach(agenda => {
+                    models.Agenda
+                        .findByIdAndRemove(agenda).exec();
+                });
+                await models.Class
+                    .findByIdAndUpdate(child.class, {'$pull': {children: child._id}}).exec();
+                await models.Section
+                    .findByIdAndUpdate(child.section, {'$pull': {children: child._id}}).exec();
+                return res.status(200).send(`Section ${child.firstName} ${child.lastName} was deleted successfully`);
+            } catch (err) {
+                return res.status(400).json(err);
+            }
+        } else {
+            return res.status(500);
+        }
+    }
+
+    // Delete request
+    async deleteRequest(req, res) {
+        if (req.query && req.query.id) {
+            try {
+                const request = await models.Request.findByIdAndRemove(req.query.id).exec();
+                await request.parents.forEach(parent => {
+                    models.User
+                        .findByIdAndUpdate(parent, {'$pull': {requests: request._id}}).exec();
+                });
+                await models.Child
+                    .findByIdAndUpdate(request.child, {'$pull': {requests: request._id}}).exec();
+                return res.status(200).send(`Request was deleted successfully`);
+            } catch (err) {
+                return res.status(400).json(err);
+            }
+        } else {
+            return res.status(500);
+        }
+    }
+
+    // Delete message
     async deleteMessage(req, res) {
         if (req.query && req.query.id) {
-            const message = await models.Message.findByIdAndRemove(req.query.id).exec();
-            await models.User
-                .findByIdAndUpdate(message.from, {'$pull': {messages: message._id}}).exec();
-            await models.User
-                .findByIdAndUpdate(message.to, {'$pull': {messages: message._id}}).exec();
-            return res.status(200).send(`Agenda from user ${message.from} to ${message.to} was deleted successfully`);
+            try {
+                const message = await models.Message.findByIdAndRemove(req.query.id).exec();
+                await models.User
+                    .findByIdAndUpdate(message.from, {'$pull': {messages: message._id}}).exec();
+                await models.User
+                    .findByIdAndUpdate(message.to, {'$pull': {messages: message._id}}).exec();
+                return res.status(200).send(`Message from user ${message.from} to ${message.to} was deleted successfully`);
+            } catch (err) {
+                return res.status(400).json(err);
+            }
         } else {
             return res.status(500);
         }
@@ -124,10 +199,14 @@ class CommonHandler {
     // Delete agenda
     async deleteAgenda(req, res) {
         if (req.query && req.query.id) {
-            const agenda = await models.Agenda.findByIdAndRemove(req.query.id).exec();
-            await models.Child
-                .findByIdAndUpdate(agenda.child, {'$pull': {agendas: agenda._id}}).exec();
-            return res.status(200).send(`Agenda for child ${agenda.child} on ${Utils.convertDate(agenda.date)} was deleted successfully`);
+            try {
+                const agenda = await models.Agenda.findByIdAndRemove(req.query.id).exec();
+                await models.Child
+                    .findByIdAndUpdate(agenda.child, {'$pull': {agendas: agenda._id}}).exec();
+                return res.status(200).send(`Agenda for child ${agenda.child} on ${Utils.convertDate(agenda.date)} was deleted successfully`);
+            } catch (err) {
+                return res.status(400).json(err);
+            }
         } else {
             return res.status(500);
         }

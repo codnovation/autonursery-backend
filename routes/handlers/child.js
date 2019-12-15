@@ -6,6 +6,11 @@ export class ChildHandler {
     // List all children in nursery
     list(req, res) {
         Child.find({})
+            .populate('parents')
+            .populate('requests')
+            .populate('agendas')
+            .populate('section')
+            .populate('class')
             .then(children => {
                 if (!children) {
                     return res.status(404).end();
@@ -20,6 +25,11 @@ export class ChildHandler {
     // Get one child by id
     get(req, res) {
         Child.findById(req.query.id)
+            .populate('parents')
+            .populate('requests')
+            .populate('agendas')
+            .populate('section')
+            .populate('class')
             .then(child => {
                 if (!child) {
                     return res.status(404).end();
